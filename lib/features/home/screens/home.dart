@@ -1,4 +1,5 @@
 import 'package:e_store_pr/core/network/api_client.dart';
+import 'package:e_store_pr/features/authentication/provider/auth_provider.dart';
 import 'package:e_store_pr/features/home/data/repositories/product_repository.dart';
 import 'package:e_store_pr/features/home/widgets/products_grid.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,17 @@ class _HomeBodyState extends State<_HomeBody> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.read<AuthProvider>().signOut();
+            },
+            icon: const Icon(
+              Icons.logout,
+              color: Colors.white,
+            ),
+          ),
+        ],
         backgroundColor: Theme.of(context).primaryColor,
         centerTitle: false,
       ),
