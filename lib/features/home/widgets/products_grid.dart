@@ -47,19 +47,40 @@ class ProductTile extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CachedNetworkImage(
-              imageUrl: product.thumbnail,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: CachedNetworkImage(
+                imageUrl: product.thumbnail,
+              ),
             ),
+            const Spacer(),
             Text(
               product.title,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
+              maxLines: 1,
             ),
+            const Spacer(),
             Text(
               product.description,
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
+            ),
+            const Spacer(),
+            Row(
+              children: [
+                Text(
+                  '\$${product.price}',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.lineThrough,
+                  ),
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+              ],
             ),
           ],
         ),
