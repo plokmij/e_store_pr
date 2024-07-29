@@ -1,3 +1,4 @@
+import 'package:e_store_pr/features/authentication/screens/auth_screen.dart';
 import 'package:e_store_pr/features/authentication/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -41,9 +42,7 @@ class MyApp extends StatelessWidget {
           } else if (provider.isLoggedIn) {
             return const HomeScreen();
           } else {
-            return const Scaffold(
-              body: SignupScreen(),
-            );
+            return const AuthScreen();
           }
         },
       ),
