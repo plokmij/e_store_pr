@@ -1,8 +1,9 @@
-import 'package:e_store_pr/features/authentication/data/models/user_model.dart';
-import 'package:e_store_pr/features/authentication/data/repositories/auth_repository.dart';
-import 'package:e_store_pr/features/authentication/data/repositories/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../data/models/user_model.dart';
+import '../data/repositories/auth_repository.dart';
+import '../data/repositories/user_repository.dart';
 
 class AuthProvider extends ChangeNotifier {
   final AuthRepository _authRepository;
