@@ -1,10 +1,9 @@
-import 'package:e_store_pr/features/authentication/screens/auth_screen.dart';
-import 'package:e_store_pr/features/authentication/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'features/authentication/provider/auth_provider.dart';
+import 'features/authentication/screens/auth_screen.dart';
 import 'features/home/screens/home.dart';
 
 class MyApp extends StatelessWidget {
