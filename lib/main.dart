@@ -1,4 +1,5 @@
-import 'package:e_store_pr/firebase_options.dart';
+import 'features/authentication/provider/auth_view_provider.dart';
+import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,11 +17,18 @@ Future<void> main() async {
   );
 
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => AuthProvider(
-        authRepository: AuthRepository(),
-        userRepository: UserRepository(),
-      ),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => AuthProvider(
+            authRepository: AuthRepository(),
+            userRepository: UserRepository(),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => AuthViewProvider(),
+        ),
+      ],
       child: const MyApp(),
     ),
   );

@@ -1,20 +1,25 @@
-import 'package:e_store_pr/features/authentication/provider/auth_provider.dart';
+import 'package:e_store_pr/features/authentication/provider/auth_view_provider.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
+import '../provider/auth_provider.dart';
+
+class SignupForm extends StatefulWidget {
+  const SignupForm({
+    super.key,
+  });
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  State<SignupForm> createState() => _SignupFormState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
+class _SignupFormState extends State<SignupForm> {
   final _formKey = GlobalKey<FormState>();
 
   String _email = '';
+  String _name = '';
   String _password = '';
 
   final _gap = const SizedBox(
@@ -35,6 +40,15 @@ class _SignupScreenState extends State<SignupScreen> {
               flex: 1,
             ),
             TextFormField(
+              decoration: const InputDecoration(hintText: 'Name'),
+              validator: (value) =>
+                  (value ?? '').isEmpty ? 'Please enter your name' : null,
+              onChanged: (value) {
+                _name = value;
+              },
+            ),
+            _gap,
+            TextFormField(
               decoration: const InputDecoration(hintText: 'Email'),
               validator: (value) =>
                   (value ?? '').isEmpty || EmailValidator.validate(value!)
@@ -48,8 +62,9 @@ class _SignupScreenState extends State<SignupScreen> {
             TextFormField(
               decoration: const InputDecoration(hintText: 'Password'),
               obscureText: true,
-              validator: (value) =>
-                  (value ?? '').isEmpty ? 'Password must not be empty' : null,
+              validator: (value) => (value ?? '').length < 6
+                  ? 'Password must be atleast 6 characters long'
+                  : null,
               onChanged: (value) {
                 _password = value;
               },
@@ -60,14 +75,15 @@ class _SignupScreenState extends State<SignupScreen> {
             CupertinoButton.filled(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  context.read<AuthProvider>().signIn(
+                  context.read<AuthProvider>().signUp(
                         email: _email,
+                        name: _name,
                         password: _password,
                       );
                 }
               },
               child: const Text(
-                'Login',
+                'Signup',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -77,19 +93,21 @@ class _SignupScreenState extends State<SignupScreen> {
               height: 8,
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                context.read<AuthViewProvider>().toggleView();
+              },
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'New here?',
+                    'Already have an account?',
                     style: TextStyle(color: Colors.black),
                   ),
                   SizedBox(
                     width: 8,
                   ),
                   Text(
-                    'Signup',
+                    'Login',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),

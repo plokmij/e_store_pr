@@ -36,10 +36,15 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setError(String? error) {
+    _errorMessage = error;
+  }
+
   Future<void> signIn({required String email, required String password}) async {
     setLoading(true);
     try {
       _user = await _authRepository.signIn(email: email, password: password);
+      setError(null);
     } catch (e) {
       _errorMessage = e.toString();
     } finally {
@@ -67,6 +72,7 @@ class AuthProvider extends ChangeNotifier {
       );
 
       await _userRepository.createUser(user);
+      setError(null);
     } catch (e) {
       _errorMessage = e.toString();
     } finally {
@@ -78,6 +84,7 @@ class AuthProvider extends ChangeNotifier {
     setLoading(true);
     try {
       await _authRepository.signOut();
+      setError(null);
     } catch (e) {
       _errorMessage = e.toString();
     } finally {

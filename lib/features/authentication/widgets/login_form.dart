@@ -1,22 +1,23 @@
+import 'package:e_store_pr/features/authentication/provider/auth_provider.dart';
+import 'package:e_store_pr/features/authentication/provider/auth_view_provider.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../provider/auth_provider.dart';
-
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
+class LoginForm extends StatefulWidget {
+  const LoginForm({
+    super.key,
+  });
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  State<LoginForm> createState() => _LoginFormState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
+class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
 
   String _email = '';
-  String _name = '';
   String _password = '';
 
   final _gap = const SizedBox(
@@ -37,15 +38,6 @@ class _SignupScreenState extends State<SignupScreen> {
               flex: 1,
             ),
             TextFormField(
-              decoration: const InputDecoration(hintText: 'Name'),
-              validator: (value) =>
-                  (value ?? '').isEmpty ? 'Please enter your name' : null,
-              onChanged: (value) {
-                _name = value;
-              },
-            ),
-            _gap,
-            TextFormField(
               decoration: const InputDecoration(hintText: 'Email'),
               validator: (value) =>
                   (value ?? '').isEmpty || EmailValidator.validate(value!)
@@ -59,9 +51,8 @@ class _SignupScreenState extends State<SignupScreen> {
             TextFormField(
               decoration: const InputDecoration(hintText: 'Password'),
               obscureText: true,
-              validator: (value) => (value ?? '').isEmpty
-                  ? 'Password must be 6 letters strong'
-                  : null,
+              validator: (value) =>
+                  (value ?? '').isEmpty ? 'Password must not be empty' : null,
               onChanged: (value) {
                 _password = value;
               },
@@ -72,15 +63,14 @@ class _SignupScreenState extends State<SignupScreen> {
             CupertinoButton.filled(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  context.read<AuthProvider>().signUp(
+                  context.read<AuthProvider>().signIn(
                         email: _email,
-                        name: _name,
                         password: _password,
                       );
                 }
               },
               child: const Text(
-                'Signup',
+                'Login',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -90,19 +80,21 @@ class _SignupScreenState extends State<SignupScreen> {
               height: 8,
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                context.read<AuthViewProvider>().toggleView();
+              },
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Already have an account?',
+                    'New here?',
                     style: TextStyle(color: Colors.black),
                   ),
                   SizedBox(
                     width: 8,
                   ),
                   Text(
-                    'Login',
+                    'Signup',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
