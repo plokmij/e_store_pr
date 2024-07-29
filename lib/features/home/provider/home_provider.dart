@@ -8,7 +8,7 @@ class HomeProvider extends ChangeNotifier {
   HomeProvider({required this.productRepository});
 
   List<Product> _products = [];
-  List<Product> get prodcust => _products;
+  List<Product> get products => _products;
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
