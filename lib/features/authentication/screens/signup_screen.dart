@@ -59,7 +59,9 @@ class _SignupScreenState extends State<SignupScreen> {
             TextFormField(
               decoration: const InputDecoration(hintText: 'Password'),
               obscureText: true,
-              validator: (value) => (value ?? '').isEmpty ? 'Password' : null,
+              validator: (value) => (value ?? '').isEmpty
+                  ? 'Password must be 6 letters strong'
+                  : null,
               onChanged: (value) {
                 _password = value;
               },

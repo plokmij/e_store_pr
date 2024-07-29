@@ -12,7 +12,12 @@ class AuthProvider extends ChangeNotifier {
     required AuthRepository authRepository,
     required UserRepository userRepository,
   })  : _authRepository = authRepository,
-        _userRepository = userRepository;
+        _userRepository = userRepository {
+    _authRepository.authStateChanges.listen((User? user) {
+      _user = user;
+      notifyListeners();
+    });
+  }
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
