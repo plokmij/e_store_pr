@@ -15,7 +15,10 @@ class AppTheme {
       filled: true,
       fillColor: Colors.white,
       isDense: true,
-      border: InputBorder.none,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(12.0)),
+        borderSide: BorderSide.none,
+      ),
       hintStyle: TextStyle(
         color: Colors.black,
       ),
