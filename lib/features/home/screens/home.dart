@@ -1,5 +1,6 @@
 import 'package:e_store_pr/core/network/api_client.dart';
 import 'package:e_store_pr/features/home/data/repositories/product_repository.dart';
+import 'package:e_store_pr/features/home/widgets/products_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -38,31 +39,38 @@ class _HomeBodyState extends State<_HomeBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer<HomeProvider>(
-        builder: (context, provider, _) {
-          if (provider.isLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (provider.hasError) {
-            return const Center(
-              child: Text('Failed to load products'),
-            );
-          } else {
-            return ListView.builder(
-              itemCount: provider.products.length,
-              itemBuilder: (context, index) {
-                final product = provider.products[index];
-                return ListTile(
-                  title: Text(product.title),
-                  subtitle: Text(
-                    product.price.toStringAsFixed(2),
-                  ),
-                );
-              },
-            );
-          }
-        },
+      appBar: AppBar(
+        title: const Text(
+          'e-Shop',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Theme.of(context).primaryColor,
+        centerTitle: false,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(
+          left: 16,
+          right: 16,
+          top: 16,
+        ),
+        child: Consumer<HomeProvider>(
+          builder: (context, provider, _) {
+            if (provider.isLoading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (provider.hasError) {
+              return const Center(
+                child: Text('Failed to load products'),
+              );
+            } else {
+              return ProductsGrid(products: provider.products);
+            }
+          },
+        ),
       ),
     );
   }
