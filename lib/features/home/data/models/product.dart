@@ -24,7 +24,7 @@ class Product {
       title: map['title'] as String,
       description: map['description'] as String,
       price: map['price'] as double,
-      discountPercentage: map['discountPercentage'] as double,
+      discountPercentage: (map['discountPercentage'] as num).toDouble(),
       thumbnail: map['thumbnail'] as String,
     );
   }
