@@ -1,6 +1,8 @@
 import 'package:e_store_pr/features/authentication/provider/auth_provider.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -31,6 +33,9 @@ class _SignupScreenState extends State<SignupScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const Spacer(
+              flex: 1,
+            ),
             TextFormField(
               decoration: const InputDecoration(hintText: 'Name'),
               validator: (value) =>
@@ -59,7 +64,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 _password = value;
               },
             ),
-            ElevatedButton(
+            const Spacer(
+              flex: 2,
+            ),
+            CupertinoButton.filled(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   context.read<AuthProvider>().signUp(
@@ -69,7 +77,36 @@ class _SignupScreenState extends State<SignupScreen> {
                       );
                 }
               },
-              child: const Text('Sign Up'),
+              child: const Text(
+                'Signup',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            TextButton(
+              onPressed: () {},
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Already have an account?',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Text(
+                    'Login',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
