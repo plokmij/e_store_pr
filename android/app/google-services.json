@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "638098946474",
+    "firebase_url": "https://flutter-auth-1f4da.firebaseio.com",
+    "project_id": "flutter-auth-1f4da",
+    "storage_bucket": "flutter-auth-1f4da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638098946474:android:b2658cb6f8020749b253d3",
+        "android_client_info": {
+          "package_name": "dev.samfan.estore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "638098946474-tnjapmglikkcs0dd8p1p328oqir5uqti.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmTmdC5csBRwIO0SK_NtU4IQ3RpVEz_I8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "638098946474-tnjapmglikkcs0dd8p1p328oqir5uqti.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
