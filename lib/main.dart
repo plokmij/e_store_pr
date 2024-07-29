@@ -1,23 +1,19 @@
-import 'package:e_store_pr/features/home/screens/home.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'app.dart';
+import 'features/authentication/data/repositories/auth_repository.dart';
+import 'features/authentication/data/repositories/user_repository.dart';
+import 'features/authentication/provider/auth_provider.dart';
 
 void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'e Shop',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => AuthProvider(
+        authRepository: AuthRepository(),
+        userRepository: UserRepository(),
       ),
-      home: const HomeScreen(),
-    );
-  }
+      child: const MyApp(),
+    ),
+  );
 }
