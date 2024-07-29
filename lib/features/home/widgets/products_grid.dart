@@ -18,7 +18,7 @@ class ProductsGrid extends StatelessWidget {
         crossAxisCount: 2,
         childAspectRatio: 0.6,
         mainAxisSpacing: 12,
-        crossAxisSpacing: 12,
+        crossAxisSpacing: 8,
       ),
       itemCount: products.length,
       itemBuilder: (context, index) {
@@ -73,12 +73,34 @@ class ProductTile extends StatelessWidget {
                 Text(
                   '\$${product.price}',
                   style: const TextStyle(
-                    fontWeight: FontWeight.bold,
+                    //fontWeight: FontWeight.bold,
+                    fontSize: 11,
+                    color: Colors.grey,
+                    fontStyle: FontStyle.italic,
                     decoration: TextDecoration.lineThrough,
                   ),
                 ),
                 const SizedBox(
-                  width: 8,
+                  width: 4,
+                ),
+                Text(
+                  '\$${product.discountedPrice.toStringAsFixed(2)}',
+                  style: const TextStyle(
+                    fontSize: 11,
+                    fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  width: 4,
+                ),
+                Text(
+                  '${product.discountPercentage}% off',
+                  style: const TextStyle(
+                    fontSize: 11,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.green,
+                  ),
                 ),
               ],
             ),

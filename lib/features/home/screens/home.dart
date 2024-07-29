@@ -52,9 +52,9 @@ class _HomeBodyState extends State<_HomeBody> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(
-          left: 16,
-          right: 16,
-          top: 16,
+          left: 12,
+          right: 12,
+          top: 12,
         ),
         child: Consumer<HomeProvider>(
           builder: (context, provider, _) {

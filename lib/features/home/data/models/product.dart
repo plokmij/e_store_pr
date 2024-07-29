@@ -31,4 +31,6 @@ class Product {
 
   factory Product.fromJson(String source) =>
       Product.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  double get discountedPrice => price - (price * discountPercentage / 100);
 }
